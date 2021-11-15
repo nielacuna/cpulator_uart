@@ -1,4 +1,3 @@
-# address map
 .equ JTAG_UART_BASE_ADDR, 			0xFF201000
 .equ JTAG_UART_DATA_REG_OFFSET, 	0
 .equ JTAG_UART_DATA_VALID,			(1<<7)
@@ -28,11 +27,10 @@ poll:	ldrb	r1, [r0, #(JTAG_UART_DATA_REG_OFFSET+1)]
 		/* extract the number of characters to read, r2 will hold the max loop count */
 		ldrh	r2, [r0, #(JTAG_UART_DATA_REG_OFFSET+2)]
 loop:	
-		ldrh	r1, [r0, #(JTAG_UART_DATA_REG_OFFSET)]	
+		ldrb	r1, [r0, #(JTAG_UART_DATA_REG_OFFSET)]	
 		mov		r3, #('a' - 'A')	/* bias value for upper case to lower case */
 		
 		/* check input is a letter (only letters can have capital or small versions) */
-		and		r1, #0xFF /* isolate the byte field which contains the letter */
 		cmp 	r1, #'A'
 		blt		print
 		cmp		r1, #'Z'
