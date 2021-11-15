@@ -52,7 +52,7 @@ print:
 decrement:		
 		adds	r2, #-1	/* decrement the loop counter */	
 		bgt		loop
-
+		nop
 		b		.	/* stop processing here. */
 
 	
