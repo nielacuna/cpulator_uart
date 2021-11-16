@@ -32,25 +32,25 @@ loop:
 		
 		/* check input is a letter (only letters can have capital or small versions) */
 		cmp 	r1, #'A'
-		blt		print
-		cmp		r1, #'Z'
-		blt		change_case
+		blt	print
+		cmp	r1, #'Z'
+		blt	change_case
 		
-		mov		r3, #('A' - 'a')	/* bias value for lower case to upper case */
+		mov	r3, #('A' - 'a')	/* bias value for lower case to upper case */
 
 		cmp 	r1, #'a'
-		blt		print
-		cmp		r1, #'z'
-		bge		decrement
+		blt	print
+		cmp	r1, #'z'
+		bge	decrement
 
 change_case:		
 		add 	r1, r3
 print:
-		str		r1, [r0]
+		str	r1, [r0]
 decrement:		
 		adds	r2, #-1	/* decrement the loop counter */	
-		bgt		loop
+		bgt	loop
 		nop
-		b		.	/* stop processing here. */
+		b	.	/* stop processing here. */
 
 	
